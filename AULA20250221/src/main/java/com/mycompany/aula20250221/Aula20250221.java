@@ -4,19 +4,18 @@ import java.util.Scanner;
 
 public class Aula20250221 {
     
-    public static void menu() {
-        System.out.printf("==========================================\n");
-        System.out.printf("\t\t%s\n", "CALCULADORA");
-        System.out.printf("==========================================\n");
-        System.out.println("\t[1] Adição (+)");
-        System.out.println("\t[2] Subtração (-)");
-        System.out.println("\t[3] Multiplicação (*)");
-        System.out.println("\t[4] Divisão (/)");
-        System.out.println("\t[0] Sair");
-        System.out.printf("==========================================\n");
-        System.out.printf("Escolha uma opção: ");
+   public static void criarCalculadora() {
+        System.out.println("=================================");
+        System.out.println("===============MENU==============");
+        System.out.println("=================================");
+        System.out.println("\t 1) Adição");
+        System.out.println("\t 2) Subtração");
+        System.out.println("\t 3) Multiplicação");
+        System.out.println("\t 4) Divisão");
+        System.out.println("\t 0) Sair");
+        System.out.println("=================================");
     }
-    
+
     public static void somar(int a, int b) {
         System.out.printf("%d + %d = %d\n", a, b, a + b);
     }
@@ -24,37 +23,36 @@ public class Aula20250221 {
         System.out.printf("%d - %d = %d\n", a, b, a - b);
     }
     public static void multiplicar(int a, int b) {
-        System.out.printf("%d * %d = %d\n", a, b, a * b);
+        System.out.printf("%d x %d = %d\n", a, b, a * b);
     }
     public static void dividir(int a, int b) {
-        if (b == 0) {
+        if( b == 0) {
             System.out.println("A divisão por 0 não é definida na matemática");
-        } else {
-            System.out.printf("%d / %d = %d\n", a, b, a / b);
+            return;
         }
+        System.out.printf("%d / %d = %d\n", a, b, a / b);
     }
-
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
         
-        Scanner scanner = new Scanner(System.in);
-        int opcao = 1;
+        int operacao = 1;
         int num1 = 0;
         int num2 = 0;
-        
         do {
-            menu();
-            opcao = scanner.nextInt();
+            criarCalculadora();
+            System.out.print("Digite a operação desejada: ");
+            operacao = scan.nextByte();
             
-            if (opcao > 0 && opcao < 5) {
-                System.out.printf("Digite o primeiro número: ");
-                num1 = scanner.nextInt();
-                System.out.printf("Digite o segundo número: ");
-                num2 = scanner.nextInt();
+            if (operacao > 0 && operacao < 5 ) {
+                System.out.print("Digite o primeiro número: ");
+                num1 = scan.nextInt();
+                System.out.print("Digite o segundo número: ");
+                num2 = scan.nextInt();
             }
             
-            switch (opcao) { 
+            switch (operacao) {
                 case 0:
-                    System.out.println("Saindo da calculadora... 👋");
+                    System.out.println("Saindo . . .");
                     break;
                 case 1:
                     somar(num1,num2);
@@ -69,11 +67,12 @@ public class Aula20250221 {
                     dividir(num1,num2);
                     break;
                 default:
-                    System.out.println("Opção inválida! Digite um número entre 0 e 4.");
+                    System.out.println("A número escolhido não se faz presente na calculadora.");
                     break;
             }
-            
-        } while(opcao != 0);
-        scanner.close();
+         
+        
+        } while (operacao != 0);
+        scan.close();
     }
 }
